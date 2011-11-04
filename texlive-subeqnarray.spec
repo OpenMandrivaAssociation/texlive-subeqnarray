@@ -53,6 +53,7 @@ extra label command \slabel is provided.
 #- source
 %doc %{_texmfdistdir}/source/latex/subeqnarray/subeqnarray.dtx
 %doc %{_texmfdistdir}/source/latex/subeqnarray/subeqnarray.ins
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -63,3 +64,5 @@ extra label command \slabel is provided.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}

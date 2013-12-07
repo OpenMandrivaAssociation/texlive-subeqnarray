@@ -6,7 +6,7 @@
 # catalog-version 2.1c
 Name:		texlive-subeqnarray
 Version:	2.1c
-Release:	3
+Release:	4
 Summary:	Equation array with sub numbering
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/subeqnarray

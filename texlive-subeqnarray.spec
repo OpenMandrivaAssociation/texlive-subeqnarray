@@ -1,50 +1,26 @@
-Name:		texlive-subeqnarray
-Version:	15878
-Release:	2
+%global tl_name subeqnarray
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	2.1f
+Release:	%{tl_revision}.1
 Summary:	Equation array with sub numbering
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/subeqnarray
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/subeqnarray.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/subeqnarray.doc.r%{version}.tar.xz
-Source2:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/subeqnarray.source.r%{version}.tar.xz
+License:	lppl1.3c
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/subeqnarray.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/subeqnarray.doc.r%{tl_revision}.tar.xz
+Source2:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/subeqnarray.source.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-This package defines the subeqnarray and subeqnarray*
-environments, which behave like the equivalent eqnarray and
-eqnarray* environments, except that the individual lines are
-numbered like 1a, 1b, 1c, etc. To refer to these numbers an
-extra label command \slabel is provided.
+This package defines the subeqnarray and subeqnarray* environments,
+which behave like the corresponding eqnarray and eqnarray* environments,
+except that the individual lines are numbered like 1a, 1b, 1c, etc. To
+refer to these numbers an extra label command \slabel is provided. Users
+are urged to consider the alignment capabilities of the amsmath bundle,
+which produce better results than eqnarray-related macros.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/subeqnarray/subeqnarray.sty
-%doc %{_texmfdistdir}/doc/latex/subeqnarray/manifest.txt
-%doc %{_texmfdistdir}/doc/latex/subeqnarray/subeqnarray.pdf
-%doc %{_texmfdistdir}/doc/latex/subeqnarray/subeqnarray.tex
-#- source
-%doc %{_texmfdistdir}/source/latex/subeqnarray/subeqnarray.dtx
-%doc %{_texmfdistdir}/source/latex/subeqnarray/subeqnarray.ins
-
-#-----------------------------------------------------------------------
-%prep
-%setup -c -a1 -a2
-%autopatch -p1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc source %{buildroot}%{_texmfdistdir}
